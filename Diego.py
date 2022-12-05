@@ -47,14 +47,18 @@ def check_word():
     else:
       attempt = attempt - 1
       print(f"you have {attempt} attempt(s) ,, \n ")
+      uwu = "";
+      owo = "";
       for char, word in zip(hidden_word, guess):
+            uwu += word
             if word in hidden_word and word in char:
-                print(word + " ✔ ")
-
+                owo += "✔"
             elif word in hidden_word:
-                print(word + " ⚠ ")
+                owo += "⚠"
             else:
-                print(" ❌ ")
+                owo+="❌"
+      print(uwu)
+      print(owo)
       if attempt == 0:
         print(" Game over !!!! ")
         print("""Restart? Type yes or no:""")
