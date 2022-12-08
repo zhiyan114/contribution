@@ -4,16 +4,22 @@
 # This section explains the instructions to the user before playing the game. 
 
 def game_instruction():
-    print("""Wordle is a single player game that requires the user to guess a five letter word that is hidden.
+    print("""Wordle is a single player game that requires the user to guess a five letter word that is picked randomly out of a list of five letter words. 
     
-⦿  A player has to guess a five letter hidden word.
+The instructions are below!
 
-⦿  You have six attempts 
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+    
+‣‣  A player has to guess a five letter hidden word.
 
-⦿  Your Progress Guide "✔❌❌✔⚠":
+‣‣  You have six attempts 
 
-    "✔" Indicates that the letter at that position was guessed correctly 
-    "⚠" indicates that the letter at that position is in the hidden word, but in a different position 
+‣‣  Your Progress Guide "✔❌❌✔⚠":
+
+    "✔" Indicates that the letter at that position was guessed correctly
+    
+    "⚠" indicates that the letter at that position is in the hidden word, but in a different position.
+    
     "❌" indicates that the letter at that position is wrong, and isn't in the hidden word.
 
 Enough said, Good Luck! 
@@ -22,13 +28,13 @@ Enough said, Good Luck!
 
 game_instruction()
 
-# This section sets a list of random 5 letter words. It defines the word random and takes a random word from the list and sets it as random_word which is the same as the hidden_word.
+# This section sets a list of random 5 letter words. It defines the word randomly and takes a random word from the list and sets it as random_word which is the same as the hidden_word.
 
 def repeat_check_word():
   check_word()
 def check_word():
   import random
-  a_list = ['adopt', 'abyss', 'adore', 'adorn', 'adult', 'adobe', 'above', 'adapt', 'apple', 'bacon', 'skies', 'about', 'dolls', 'falls', 'miami', 'seize', 'serve', 'sharp', 'shine', 'shelf', 'slice', 'solid', 'space', 'abuse', 'adult','agent', 'anger', 'apple', 'award', 'basis', 'beach', 'birth', 'blood', 'board', 'brain', 'bread', 'brown', 'buyer', 'cause', 'chain', 'chair', 'chest', 'chief']
+  a_list = ['adopt', 'abyss', 'adore', 'adorn', 'adult', 'adobe', 'above', 'adapt', 'apple', 'bacon', 'skies', 'about', 'dolls', 'falls', 'miami', 'seize', 'serve', 'sharp', 'shine', 'shelf', 'slice', 'solid', 'space', 'abuse', 'adult','agent', 'anger', 'apple', 'award', 'basis', 'beach', 'birth', 'blood', 'board', 'brain', 'bread', 'brown', 'buyer', 'cause', 'chain', 'chair', 'chest', 'chief', 'dolls', 'loafs', 'water', 'flare', 'threw', 'polls', 'round', 'plant', 'roots', 'crops', 'house']
   
 # Number of attempts are set at 6. A while loop is created to let the computer know that as long as you have more than 0 attempts you can continue guessing.
 
@@ -38,32 +44,57 @@ def check_word():
   hidden_word = random_word
   attempt = 6
   while attempt > 0:
+    print("┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈")
     guess = str(input("Guess the word: "))
+    print("")
     if guess == hidden_word:
       print("You guessed the words correctly! WIN 🕺🕺🕺 ")
       print("""Restart? Type yes or no:""")
       break
-      
+
     else:
       attempt = attempt - 1
-      print(f"you have {attempt} attempt(s) ,, \n ")
+      print(f"...you have {attempt} attempt(s):\n ")
+      
+# Defined "owo" and set the rules for when thw word is guessed and what happens to each word.
+      
       uwu = "";
       owo = "";
       for char, word in zip(hidden_word, guess):
             uwu += word
             if word in hidden_word and word in char:
-                owo += "✔"
+              
+# Used += to assign the new value to the variable and add it to the same line. This way I was able to make the line horizontally instead of vertically which is what happened with the previous code I had.
+              
+                owo += "✔\t"
             elif word in hidden_word:
-                owo += "⚠"
+                owo += "⚠\t"
             else:
-                owo+="❌"
-      print(uwu)
+                owo += "❌\t"
+              
+# When the user enters a word, the word is then analyzed based on the previous if's, elif's, else's. "owo" is printed based on the standards.
+
+# Also, the user's guessed word is printed below the "owo" output.
+              
       print(owo)
+      print((guess[0] + '\t' + guess[1]+ '\t' + guess[2] + '\t' + guess[3]       + '\t' + guess[4]).expandtabs(4))
+
+# When the number of attempts reaches 0, the user is not able to guess anymore. "Game Over!!, the word was:" and the hidden word is now revealed using the print(random_word) command.
+
+#The user is then asked a question weather or not they would like to continue playing by inputing either yea or no. Based on those inputs, the code has an option in which the game either ends and clears everything or the game restarts and new game is started again.
+      
       if attempt == 0:
-        print(" Game over !!!! ")
+        print("")
+        print("Game Over!!") 
+        print("The word was:")
+        print("┈┈┈┈┈")
+        print(random_word)
+        print("┈┈┈┈┈")
         print("""Restart? Type yes or no:""")
         break
-
+        
+# Check_word() function is called to be executed.
+        
 check_word()
 
 def end_game():
@@ -78,6 +109,8 @@ if restart == str("yes"):
 
 if restart == str("no"):
   end_game()
+
+# New game instructions are created to keep the user more engaged, and it makes the game more interesting since the user is now interacting with the computer.
   
 def game_instructions():
   print("""Welcome back fellow wordle players!
@@ -114,13 +147,14 @@ game_instructions()
   
 repeat_check_word()
 
+restart = input("yes")
 
 if restart == str("yes"):
   import os
   os.system('clear')
-
-if restart == str("no"):
-  end_game()
+  
+if restart == ("no"):
+    end_game()
 
 def game_instructions():
   print("""I dont have to tell you again...you are here for a reason...Good Luck!
