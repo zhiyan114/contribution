@@ -56,29 +56,33 @@ def check_word():
       attempt = attempt - 1
       print(f"...you have {attempt} attempt(s):\n ")
       
-# Defined "owo" and set the rules for when thw word is guessed and what happens to each word.
+      # Defined "owo" and set the rules for when thw word is guessed and what happens to each word.
       
-      uwu = "";
-      owo = "";
-      for char, word in zip(hidden_word, guess):
-            uwu += word
-            if word in hidden_word and word in char:
-              
-# Used += to assign the new value to the variable and add it to the same line. This way I was able to make the line horizontally instead of vertically which is what happened with the previous code I had.
-              
-                owo += "✔\t"
-            elif word in hidden_word:
-                owo += "⚠\t"
-            else:
-                owo += "❌\t"
-              
-# When the user enters a word, the word is then analyzed based on the previous if's, elif's, else's. "owo" is printed based on the standards.
+      uwu = ""
+      owo = ""
+      for char, word in zip(random_word, guess):
+          if word in random_word and word in char:
 
-# Also, the user's guessed word is printed below the "owo" output.
+              # Used += to assign the new value to the variable and add it to the same line. This way I was able to make the line horizontally instead of vertically which is what happened with the previous code I had.
               
+              # Assigned ASCII code colors to each letter depending on its accuracy (correct = green, partial = yellow, wrong = red)
+              owo += "\033[32m✔\t"
+              uwu += "\033[32m{letter} \t".format(letter=word)
+          elif word in random_word:
+              owo += "\033[33m⚠\t"
+              uwu += "\033[33m{letter} \t".format(letter=word)
+          else:
+              owo += "\033[31m❌\t"
+              uwu += "\033[31m{letter} \t".format(letter=word)
+      uwu.expandtabs(4)
+      guess = uwu
+
+      # When the user enters a word, the word is then analyzed based on the previous if's, elif's, else's. "owo" is printed based on the standards.
+
+      # Also, the user's guessed word and color reset is printed below the "owo" output.
+
       print(owo)
-      print((guess[0] + '\t' + guess[1]+ '\t' + guess[2] + '\t' + guess[3]       + '\t' + guess[4]).expandtabs(4))
-
+      print(guess + "\033[0m")
 # When the number of attempts reaches 0, the user is not able to guess anymore. "Game Over!!, the word was:" and the hidden word is now revealed using the print(random_word) command.
 
 #The user is then asked a question weather or not they would like to continue playing by inputing either yea or no. Based on those inputs, the code has an option in which the game either ends and clears everything or the game restarts and new game is started again.
